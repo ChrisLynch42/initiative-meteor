@@ -1,0 +1,30 @@
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Initiative - Meteor</title>
+    <link rel="stylesheet" type="text/css" href="css/base.css"/>
+  </head>
+  <body>
+    <div id="content">
+      <div id="initiativeApplication">
+      <div id="header">
+        <h1>Initiative</h1>
+      </div>
+      <div class="buttonRow center">
+        {{> controls }}
+      </div>
+      <div id="newSection">
+        <div class="itemRow">
+          <h3>Add New</h3>
+        </div>
+        <div id="newInitiative" class="itemRow editing">
+          {{> character }}
+        </div>
+      </div>
+      <div id="characterList">
+        {{> characterList}}
+      </div>
+      <div id="footer itemRow"></div>
+      </div>
+    </div>
+  </body>
