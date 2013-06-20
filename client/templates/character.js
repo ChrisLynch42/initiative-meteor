@@ -17,9 +17,9 @@ Template.character.events = {
   },
 
   'click .viewClick': function(event) {
-     alert(event);
-     this.find('.character').addClass('editing');
-     this.find('.initiative').focus();
+     var theTarget = $(event.currentTarget);
+     theTarget.addClass('editing');
+     theTarget.focus();
   }
 };
 
