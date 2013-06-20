@@ -1,17 +1,18 @@
 <template name="character">
-<div class="view">
-  <div class="viewRow viewClick character">
-    <div class="column initiativeColumn">
+<div class="view characterSet">
+  <div class="viewRow character">
+    <input class="edit initiative characterId" name="characterId" type="hidden" value="{{ _id }}"/>
+    <div class="column initiativeColumn characterClick">
       <div class="columnLabel ">Initiative</div>
       <div class="viewDisplay "><span >{{ initiative }}</span></div>
       <div class="dataDisplay"><input class="edit initiative" type="number" min="1" max="40" maxlength="2" value="{{ initiative }}"></div>
     </div>
-    <div class="column nameColumn">
+    <div class="column nameColumn characterClick">
       <div class="columnLabel ">Name</div>
       <div class="viewDisplay "><span>{{ name }}-{{ acted }}</span></div>
       <div class="dataDisplay"><input class="edit name" value="{{ name }}" placeholder="Character name."></div>
     </div>
-    <div class="column hitPointsColumn">
+    <div class="column hitPointsColumn characterClick">
       <div class="columnLabel ">HP</div>
       <div class="viewDisplay "><span >{{ hitPoints }}</span></div>
       <div class="dataDisplay"><input class="edit hitPoints" type="number" min="1" max="500" maxlength="3" value="{{ hitPoints }}"></div>
@@ -20,14 +21,27 @@
       <div class="columnLabel"><span>&nbsp;</span></div>
       <div class="dataDisplay">
         {{#if idValid  }} 
-          <input type="image" id="updateCharacter" class="buttonWidth" src="images/Save.svg"></input>
-          <input type="image" id="removeCharacter" class="buttonWidth" src="images/Delete.svg"/>
-          <input type="image" id="returnCharacter" class="buttonWidth" src="images/Return.svg"/>
+        <input type="image" id="updateCharacter" class="buttonWidth" src="images/Save.svg"></input>
+        <input type="image" id="removeCharacter" class="buttonWidth" src="images/Delete.svg"/>
+        <input type="image" id="returnCharacter" class="buttonWidth" src="images/Return.svg"/>
         {{else}}
-          <input type="image" id="addCharacter" class="buttonWidth" src="images/Add.svg"></input>
+        <input type="image" id="addCharacter" class="buttonWidth" src="images/Add.svg"></input>
         {{/if}}
       </div>      
     </div>
+
   </div>
+  {{#if idValid  }}
+  <div class="viewRow conditions">
+    <div id="conditionLabel" class="viewClick">Conditions</div> 
+    <input type="image" id="addCondition" class="conditionButtonWidth" src="images/Add.svg"></input>
+    <div class="viewRow conditionList">
+      {{> conditionList}}
+    </div>
+  </div>
+  {{/if}}
+
+
+
 </div>
 </template>

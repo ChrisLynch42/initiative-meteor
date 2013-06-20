@@ -29,7 +29,6 @@ Template.controls.events({
     'click #prevInitiative':  function() {
       var charactersCursor = Characters.find({},{limit: 1, sort: {acted: -1, initiative: -1}});
       var charactersArray = charactersCursor.fetch();
-      alert(charactersArray);
       var lastCharacter = charactersArray[0];
       Characters.update({_id: lastCharacter._id},{$set: {acted: 0}});
     },

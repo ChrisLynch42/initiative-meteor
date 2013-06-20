@@ -1,0 +1,31 @@
+<template name="condition">
+<div class="view">
+  <div class="viewRow condition">
+    <div class="column durationColumn conditionClick">
+      <div class="columnLabel ">Duration</div>
+      <div class="viewDisplay "><span >{{ duration }}</span></div>
+      <div class="dataDisplay"><input class="edit duration" type="number" min="1" max="40" maxlength="2" value="{{ duration }}"></div>
+    </div>
+    <div class="column conditionNameColumn conditionClick">
+      <div class="columnLabel ">Name</div>
+      <div class="viewDisplay "><span>{{ name }}-{{_id}}</span></div>
+      <div class="dataDisplay"><input class="edit conditionName" value="{{ name }}" placeholder="Character name."></div>
+    </div>
+    <div class="column effectColumn conditionClick">
+      <div class="columnLabel ">Effect</div>
+      <div class="viewDisplay "><span >{{ effect }}</span></div>
+      <div class="dataDisplay"><input class="edit effect" type="number" min="1" max="500" maxlength="3" value="{{ effect }}"></div>
+    </div>
+    <div class="column commandColumn">
+      <div class="columnLabel"><span>&nbsp;</span></div>
+      <div class="dataDisplay">
+        <input type="image" id="updateCondition" class="buttonWidth" src="images/Save.svg"></input>
+        <input type="image" id="removeCondition" class="buttonWidth" src="images/Delete.svg"/>
+        <input type="image" id="returnCondition" class="buttonWidth" src="images/Return.svg"/>
+
+      </div>      
+    </div>
+
+  </div>
+</div>
+</template>
