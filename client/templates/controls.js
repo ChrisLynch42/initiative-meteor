@@ -27,18 +27,20 @@ Template.controls.events({
     },
 
     'click #prevInitiative':  function() {
-      var lastCharacter = this.characters.at(this.characters.length - 1);
-      lastCharacter.set({acted: 0});
-      this.characters.sort();
-      this.addAll();
+      var charactersCursor = Characters.find({},{limit: 1, sort: {acted: -1, initiative: -1}});
+      var charactersArray = charactersCursor.fetch();
+      alert(charactersArray);
+      var lastCharacter = charactersArray[0];
+      Characters.update({_id: lastCharacter._id},{$set: {acted: 0}});
     },
 
     'click #nextInitiative':  function() {     
       var chararactersCursor = Characters.find({},{limit: 2, sort: {acted: 1, initiative: 1}});
       var charactersArray = chararactersCursor.fetch();
       var firstCharacter = charactersArray[0];
-      var secondCharacter = charactersArray[0];
-      alert(secondCharacter.acted > 0);
+      var secondCharacter = charactersArray[1];
+     // alert(firstCharacter.name + "----" + firstCharacter.acted);
+     // alert(secondCharacter.name + "----" + secondCharacter.acted);
       if(secondCharacter.acted > 0) {
         Meteor.apply('clearActed');
       } else {

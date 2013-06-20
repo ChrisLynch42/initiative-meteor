@@ -14,6 +14,12 @@ Template.character.events = {
      var nameValue = $('#newInitiative .name').val();
      var hitPointsValue = $('#newInitiative .hitPoints').val();
      Characters.insert({ initiative: initiativeValue , name: nameValue, hitPoints: hitPointsValue, acted: 0 });
+  },
+
+  'click .viewClick': function(event) {
+     alert(event);
+     this.find('.character').addClass('editing');
+     this.find('.initiative').focus();
   }
 };
 
