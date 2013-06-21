@@ -1,6 +1,7 @@
 <template name="condition">
 <div class="view">
-  <div class="viewRow condition">
+  <div class="viewRow condition {{#if needsWork }}editing{{/if}}">
+    <input class="conditionId" name="conditionId" type="hidden" value="{{ conditionId }}">
     <div class="column durationColumn conditionClick">
       <div class="columnLabel ">Duration</div>
       <div class="viewDisplay "><span >{{ duration }}</span></div>

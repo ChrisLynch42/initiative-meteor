@@ -11,7 +11,10 @@ Template.character.displayMode = function(characterObject) {
   characterObject.removeClass('editing');
 };
 
-Template.character.emptyCondition = { conditionId: Meteor.Collection.ObjectId(), duration: 0, name: 'empty', effect: 'none'};
+Template.character.emptyCondition = function() {
+  var idDate = new Date();
+  return { conditionId: idDate.getMilliseconds() , duration: 0, name: 'empty', effect: 'none'};
+};
 
 
 Template.character.events = {
@@ -46,7 +49,7 @@ Template.character.events = {
   },
 
   'click #addCondition': function(event) {
-     Characters.update(this._id,{$push: {conditions: Template.character.emptyCondition }});
+     Characters.update(this._id,{$push: {conditions: Template.character.emptyCondition() }});
   },
 
   'click #returnCharacter': function(event) {

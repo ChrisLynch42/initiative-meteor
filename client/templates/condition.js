@@ -7,7 +7,14 @@ Template.condition.idValid = function() {
   return returnValue;
 };
 
-Template.condition.emptyCondition = {duration: 0, name: 'empty', effect: 'none'};
+Template.condition.emptyCondition = function() {
+  var idDate = new Date();
+  return { conditionId: idDate.getMilliseconds() , duration: 0, name: 'empty', effect: 'none'};
+};
+
+Template.condition.needsWork = function() {
+  return this.duration < 1
+};
 
 
 Template.condition.events = {
@@ -22,20 +29,28 @@ Template.condition.events = {
      var theButton = $(event.currentTarget);
      var conditionObject = theButton.parents('.condition');
      var characterSet = theButton.parents('.characterSet');
-     alert(characterSet);
-     var value = conditionObject.find('.conditionName').val().trim();
+     var nameValue = conditionObject.find('.conditionName').val().trim();
      var durationValue = conditionObject.find('.duration').val().trim();
      var effectValue = conditionObject.find('.effect').val().trim();
+     var conditionId = conditionObject.find('.conditionId').val();
      var characterId = characterSet.find('.characterId').val();
      if ( characterId ) {
-       alert(characterId);
-       Characters.update({_id: characterId},{$addToSet: { conditions: {name: value, duration: durationValue, effect: effectValue }}});
+       var params=[characterId,conditionId,nameValue,durationValue,effectValue];
+       Meteor.apply('updateCondition',params);
      }
      conditionObject.removeClass('editing');
   },
 
   'click #removeCondition': function(event) {
-//     Characters.remove(this._id);
+     var theButton = $(event.currentTarget);
+     var conditionObject = theButton.parents('.condition');
+     var characterSet = theButton.parents('.characterSet');
+     var conditionId = conditionObject.find('.conditionId').val();
+     var characterId = characterSet.find('.characterId').val();
+     if ( characterId ) {
+       var params=[characterId,conditionId];
+       Meteor.apply('removeCondition',params);
+     }
   },
   
   'click #returnCondition': function(event) {
