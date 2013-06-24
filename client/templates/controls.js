@@ -45,6 +45,7 @@ Template.controls.events({
       } else {
         Characters.update({_id: firstCharacter._id},{$set: {acted: 1}});
       }
+      Meteor.apply('incrementConditions',[firstCharacter._id]);
     }    
 
 
