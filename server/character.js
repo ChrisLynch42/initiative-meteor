@@ -31,13 +31,13 @@ Meteor.methods({
     var returnValue = Characters.update(searchJSON,updateJSON);
     return returnValue;
   },
-  incrementConditions: function (characterId) {
-    var searchJSON = {_id: characterId,"conditions.name": {$gt: ""}};
+  incrementCondition: function (characterId,conditionId,incrementValue) {
+    var searchJSON = {_id: characterId,"conditions.conditionId": conditionId};
     console.log(searchJSON);
-    var updateJSON = {$inc: {"conditions.$.duration": -1}};
+    var updateJSON = {$inc: {"conditions.$.duration": incrementValue}};
     console.log(updateJSON);
-    var returnValue = Characters.update(searchJSON,updateJSON,{multi: true});
-    Characters.update({_id: characterId},{$pull: {"conditions": {"duration": {$lt: 1}}}},{multi: true});
+    var returnValue = Characters.update(searchJSON,updateJSON);
+    Characters.update(searchJSON,{$pull: {"conditions": {"duration": {$lt: 1}}}});
     
     return returnValue;
   }

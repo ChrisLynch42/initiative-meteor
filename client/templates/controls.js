@@ -40,12 +40,19 @@ Template.controls.events({
       var secondCharacter = charactersArray[1];
      // alert(firstCharacter.name + "----" + firstCharacter.acted);
      // alert(secondCharacter.name + "----" + secondCharacter.acted);
+      if(firstCharacter.conditions) {
+
+        for(var i=0;i < firstCharacter.conditions.length;i++) {
+          if(firstCharacter.conditions[i].duration) {
+            Meteor.apply("incrementCondition",[firstCharacter._id,firstCharacter.conditions[i].conditionId,-1]);
+          }
+        }
+      }
       if(secondCharacter.acted > 0) {
         Meteor.apply('clearActed');
       } else {
         Characters.update({_id: firstCharacter._id},{$set: {acted: 1}});
       }
-      Meteor.apply('incrementConditions',[firstCharacter._id]);
     }    
 
 
