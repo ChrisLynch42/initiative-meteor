@@ -1,29 +1,32 @@
+Template.controls.controls = function () {
+  return Controls.find({});
+}
+
+Template.controls.isStarted = function() {
+  var returnValue = false;
+  if(this.started > 0) {
+    returnValue = true;
+  }
+  return returnValue;
+};
+
+Template.controls.newCharacter = function() {
+  var returnValue = {};
+  return returnValue;
+}
 
 
 Template.controls.events({
   'click #startSession' : function() {
+    Meteor.apply("updateControls",[this._id,1]);
       $("#newSection").css("display", "none");
-      $("#startSession").attr("disabled",true);
-      $("#startSession").css("display",'none');
-      $("#resetSession").css("display",'none');
-      $("#endSession").attr("disabled",false);
-      $("#endSession").css("display",'inline');
-      $("#prevInitiative").attr("disabled",false);
-      $("#prevInitiative").css("display",'inline');
-      $("#nextInitiative").attr("disabled",false);
-      $("#nextInitiative").css("display",'inline');
+     // $("#startSession").attr("disabled",true);
+     // $("#startSession").css("display",'none');
     },                
 
     'click #endSession':  function() {
+      Meteor.apply("updateControls",[this._id,0]);
       $("#newSection").css("display", "block");
-      $("#startSession").attr("disabled",false);
-      $("#startSession").css("display",'inline');
-      $("#endSession").attr("disabled",true);
-      $("#endSession").css("display",'none');
-      $("#prevInitiative").attr("disabled",true);
-      $("#prevInitiative").css("display",'none');
-      $("#nextInitiative").attr("disabled",true);
-      $("#nextInitiative").css("display",'none');
     },
 
     'click #prevInitiative':  function() {

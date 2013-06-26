@@ -1,7 +1,26 @@
 <template name="controls">
+<div id="controls" class="buttonRow center">
+  {{#each controls}}
+  {{#unless isStarted }}
   <input type="image" id="startSession" class="buttonWidth" src="images/Start.svg"/>
+  <div id="newSection">
+    <div class="itemRow">
+      <h3>Add New</h3>
+    </div>
+    {{#with newCharacter }}
+    <div id="newInitiative" class="itemRow editing">
+      {{> character }}
+    </div>
+    {{/with}}
+  </div>
+
+  {{/unless}}  
+  {{#if isStarted }}
   <input type="image" id="resetSession" class="buttonWidth" src="images/Caution.svg"/>
-  <input type="image" id="prevInitiative" class="buttonWidth" src="images/Previous.svg"/>
+  <input type="image" id="prevInitiative" class="buttonWidth" src="images/Previous.svg" />
   <input type="image" id="endSession" class="buttonWidth" src="images/End.svg"/>
   <input type="image" id="nextInitiative" class="buttonWidth" src="images/Next.svg"/>
+  {{/if}}    
+  {{/each}}
+</div>
 </template>

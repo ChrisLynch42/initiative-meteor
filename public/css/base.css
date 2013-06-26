@@ -447,7 +447,7 @@ div.editing .dataDisplay {
   padding-left: .75em;
 }
 
-#endSession, #prevInitiative, #nextInitiative, #resetSession {
+#resetSession {
   display: none;
 }
 

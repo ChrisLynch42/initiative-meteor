@@ -8,7 +8,7 @@ Meteor.publish('controls', function () {
 Meteor.methods({
   updateControls: function (controlsId, startedValue) {
     console.log('updateControls controlsId='+ controlsId);
-    var returnValue = ControlData.update({_id: controlsId},{started: startedValue});
+    var returnValue = Controls.update({_id: controlsId},{started: startedValue});
     return returnValue;
   }
 });
